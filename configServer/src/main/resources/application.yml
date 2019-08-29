@@ -1,0 +1,17 @@
+server:
+  port: 8888
+spring:
+  application:    name: configserver
+  profiles:
+    active: native
+  cloud:    config:      server:        native:
+          search-locations:
+            file:///home/huijun/share/springboot-workspace/configServer/src/main/resources/config/testService,
+            file:///home/huijun/share/springboot-workspace/configServer/src/main/resources/config/purchaseServer,
+            file:///home/huijun/share/springboot-workspace/configServer/src/main/resources/config/orderServer,
+            file:///home/huijun/share/springboot-workspace/configServer/src/main/resources/config/delivererServer,
+            file:///home/huijun/share/springboot-workspace/configServer/src/main/resources/config/memberServer
+eureka:  instance:    prefer-ip-address: true
+  client:    register-with-eureka: true
+    fetch-registry: true
+    service-url:      defaultZone: http://localhost:8761/eureka            

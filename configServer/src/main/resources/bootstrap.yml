@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: configServer
+  cloud:
+    config:
+      server:
+        encrypt.enabled: false
