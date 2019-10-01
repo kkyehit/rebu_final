@@ -6,11 +6,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rebu.orderServer.model.Deliverer;
 import com.rebu.orderServer.model.Order;
+import com.rebu.orderServer.repository.OrderRepository;
 import com.rebu.orderServer.service.OrderService;
 
 @RestController
@@ -20,7 +23,7 @@ public class OrderServerController {
 	OrderService orderService;
 	
 	@RequestMapping(value="/orderid/{orderid}", method = RequestMethod.GET)
-	public List<Order> getOrderById(@PathVariable("orderid") Integer OrderId) {
+	public Order getOrderById(@PathVariable("orderid") Integer OrderId) {
 		return orderService.getOrderByOrderId(OrderId);
 	}
 	@RequestMapping(value="/send/{send}", method = RequestMethod.GET)
@@ -43,5 +46,58 @@ public class OrderServerController {
 		return order;
 	}
 	
+	@RequestMapping(value="/update", method = RequestMethod.POST)
+	public Order updateOrder(@RequestBody Order order) {
+		//order res = orderService.get
+		orderService.updateOrder(order);
+		return order;
+	}
 	
+	
+	@RequestMapping(value="/delivererList", method = RequestMethod.GET)
+	public List<Deliverer> getDeliverer() {
+		return orderService.getDelivererList();
+	}
+	
+	@RequestMapping(value="/setDelivererStatus", method = RequestMethod.POST)
+	public Deliverer setDelivererStatus(@RequestBody Deliverer d) {
+		orderService.setDelivererStatus(d);
+		return d;
+	}
+	
+	@RequestMapping(value = "/getCurOrder/{deliver}", method = RequestMethod.GET)
+	public Order getCurOrder(@PathVariable("deliver") String deliver) {
+		Order res = orderService.getOrderByDeliverCanTake(deliver);
+		return res;
+	}
+	
+	@RequestMapping(value = "/getMerchandise/{deliver}", method = RequestMethod.GET)
+	public List<String> getMerchandise(@PathVariable("deliver") String deliver) {
+		return orderService.getMerchandise(deliver);
+	}
+	
+	@RequestMapping(value = "/finishDeliver/{deliver}", method = RequestMethod.GET)
+	public String finishDeliver(@PathVariable("deliver") String deliver) {
+		return orderService.finishDeliver(deliver);
+	}
+	
+	
+	@RequestMapping(value = "/getOrderList/{username}", method = RequestMethod.GET)
+	public List<Order> getOrderList(@PathVariable("username") String username) {
+		return orderService.getOrderList(username);
+	}
+	
+	@RequestMapping(value = "/reviewed/{orderid}", method = RequestMethod.GET)
+	public void reviewed(@PathVariable("orderid") Integer orderid) {
+		orderService.reviewed(orderid);
+	}
+	
+	@RequestMapping(value = "/getCnt", method = RequestMethod.GET)
+	public long getCnt() {
+		return orderService.getCnt();
+	}
+	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
+	public List<Order> getAll() {
+		return orderService.getAll();
+	}
 }

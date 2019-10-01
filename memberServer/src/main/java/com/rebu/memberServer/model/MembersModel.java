@@ -15,6 +15,8 @@ public class MembersModel {
 	private String username;
 	@Column(name = "password", nullable = false)
 	private String password;
+	@Column(name = "wallet")
+	private String wallet;
 	
 	public Integer getId() {
 		return id;
@@ -33,5 +35,11 @@ public class MembersModel {
 		return password;
 	}public void setPassword(String _password) {
 		this.password = _password;
+	}
+	
+	public String getWallet() {
+		return wallet;
+	}public void setWallet(String _wallet) {
+		this.wallet = _wallet;
 	}
 }

@@ -1,6 +1,8 @@
 package com.rebu.memberServer.services;
 
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +24,15 @@ public class MembersService {
 		return members;
 	}
 	
-	public List<MembersModel> getMembersModelsByOrg(String Username){
+	public MembersModel getMembersModelsByOrg(String Username){
 		return membersRepository.findByUsername(Username);
 	}
 	
 	public void saveMembersModel(MembersModel members) {
+		Random rand = new Random();
+		rand.setSeed(System.currentTimeMillis());
+		System.out.println("rand : "+rand.nextInt(2123456789));
+		members.setId(rand.nextInt(2123456789));
 		membersRepository.save(members);
 	}
 	public void updateMembersModel(MembersModel members) {
@@ -34,5 +40,11 @@ public class MembersService {
 	}
 	public void deleteMembersModel(MembersModel members) {
 		membersRepository.delete(members);
+	}
+	public Iterable<MembersModel> getAll() {
+		return membersRepository.findAll();
+	}
+	public long getCnt() {
+		return membersRepository.count();
 	}
 }

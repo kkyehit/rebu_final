@@ -9,7 +9,8 @@ import com.rebu.delivererServer.model.Deliverer;
 
 @Repository
 public interface DelivererRepository extends CrudRepository<Deliverer, String>{
-	public List<Deliverer> findById(Integer id);
-	public List<Deliverer> findByUsername(String Username);
-	public List<Deliverer> findByUsernameAndPassword(String Username, String Password);
+	public Deliverer findById(Integer id);
+	public Deliverer findByUsername(String Username);
+	public List<Deliverer> findByStatus(Integer Status);
+	public Deliverer findByUsernameAndPassword(String Username, String Password);
 }

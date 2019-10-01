@@ -9,10 +9,11 @@ import com.rebu.orderServer.model.Order;
 
 @Repository
 public interface OrderRepository extends CrudRepository<Order, String>{
-	public List<Order> findByOrderid(Integer OrderId);
+	public Order findByOrderid(Integer OrderId);
 	
 	public List<Order> findBySend(String send);
 	public List<Order> findByReceive(String receive);
 	public List<Order> findByDeliver(String deliver);
+	public Order findByDeliverAndStatus(String deliver, Integer status);
 	
 }

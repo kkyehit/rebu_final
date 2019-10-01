@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MembersRepository extends CrudRepository<MembersModel,String> {
-	public List<MembersModel> findByUsername(String Username);
-    public MembersModel findByUsernameAndPassword(String Username,String Password);
+	public MembersModel findByUsername(String Username);
+	public MembersModel findByUsernameAndPassword(String Username,String Password);
+	public MembersModel findById(Integer Id);
+
 }

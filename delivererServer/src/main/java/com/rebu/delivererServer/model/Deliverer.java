@@ -22,6 +22,8 @@ public class Deliverer {
 	private String x;
 	@Column(name="y")
 	private String y;
+	@Column(name="wallet")
+	private String wallet;
 	
 	public Integer getId() { return id;}
 	public void setId(Integer _id) {this.id = _id;}
@@ -41,5 +43,9 @@ public class Deliverer {
 	public String getY() { return y;}
 	public void setY(String _y) {this.y = _y;}
 	
-	
+	public String getWallet() {
+		return wallet;
+	}public void setWallet(String _wallet) {
+		this.wallet = _wallet;
+	}
 }
